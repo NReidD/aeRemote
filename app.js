@@ -10,6 +10,7 @@ var messageRouter = require('./routes/message');
 var cpuRouter = require('./routes/cpuManager');
 var dataRouter = require('./routes/dataSheet');
 var taskRouter = require('./routes/taskManager');
+var loadRouter = require('./routes/loadManager');
 
 
 var app = express();
@@ -23,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/loading', loadRouter)
 app.use('/', indexRouter);
 app.use('/msg', messageRouter);
 app.use('/cpu', cpuRouter);
