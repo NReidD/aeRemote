@@ -10,6 +10,7 @@ var messageRouter = require('./routes/message');
 var cpuRouter = require('./routes/cpuManager');
 var dataRouter = require('./routes/dataSheet');
 var taskRouter = require('./routes/taskManager');
+var taskRouter = require('./routes/testManager');
 
 
 var app = express();
@@ -29,7 +30,8 @@ app.use('/msg', messageRouter);
 app.use('/cpu', cpuRouter);
 app.use('/data', dataRouter);
 app.use('/task', taskRouter);
-app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/test', taskRouter);
+
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
