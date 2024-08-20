@@ -8,7 +8,7 @@ var app = require('../app');
 var debug = require('debug')('ae:server');
 var http = require('http');
 var server = require('./servSide')
- 
+  
 /**
  * Get port from environment and store in Express.
  */
