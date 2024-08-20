@@ -31,7 +31,7 @@ jobs:
         password: ${{ secrets.PASSWORD}}
         port: ${{ secrets.PORT}}
         script: 
-          cd /home/ae2web/aeRemote/
+          cd /home/nnn/aeRemote/
           echo {$PWD}
           git pull
           npm install
