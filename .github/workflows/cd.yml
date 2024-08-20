@@ -35,8 +35,8 @@ jobs:
           echo {git status}
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
-          git fetch
-          git pull
+          github fetch
+          github pull
           npm install
           npm run dev
 
