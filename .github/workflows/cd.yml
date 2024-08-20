@@ -33,6 +33,8 @@ jobs:
         script: 
           cd /home/ae2web/aeRemote/
           echo {git status}
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
           git fetch
           git pull
           npm install
