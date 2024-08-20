@@ -26,5 +26,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install
-
+        host: ${{ secrets.HOST}}
+        username: ${{ secrets.USERNAME}}
+        password: ${{ secrets.PASSWORD}}
+        port: ${{ secrets.PORT}}
+        script: 
+          cd /aeRemote
+          git pull
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          npm install
+          npm start
+          
