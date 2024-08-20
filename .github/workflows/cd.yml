@@ -34,8 +34,6 @@ jobs:
           echo secrets.PORT
           cd /home/ae2web/aeRemote
           git pull
-          export NVM_DIR=~/.nvm
-          source ~/.nvm/nvm.sh
           npm install
           npm run dev
 
