@@ -32,7 +32,7 @@ jobs:
         port: ${{ secrets.PORT}}
         script: 
           cd /home/ae2web/aeRemote/
-          echo {git status}
+          echhheeje
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh
           github fetch
