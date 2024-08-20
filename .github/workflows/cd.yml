@@ -27,4 +27,4 @@ jobs:
           cd /home/ae2web/aeRemote/
           git pull
           npm install
-          npm run dev
+        run: npm run dev
