@@ -15,7 +15,7 @@ var server = require('./servSide')
     
 
         console.log("WIN") 
-            var port = normalizePort(process.env.PORT || '22');
+            var port = normalizePort(process.env.PORT || '3123');
         app.set('port', port);
 
 /**
