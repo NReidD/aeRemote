@@ -10,33 +10,19 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: appleboy/ssh-action@master
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        host: ${{ secrets.HOST}}
-        username: ${{ secrets.USERNAME}}
-        password: ${{ secrets.PASSWORD}}
-        port: ${{ secrets.PORT}}
-        script: 
-          cd /home/ae2web/aeRemote/
-          echhheeje
-          export NVM_DIR=~/.nvm
-          source ~/.nvm/nvm.sh
-          github fetch
-          github pull
-          npm install
-          npm run dev
+    - name: Checkout code
+      uses: actions/checkout@v3
 
+    - name: Set up SSH
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PASSWORD}}
+        script: |
+          cd /home/ae2web/aeRemote/
+          git pull
