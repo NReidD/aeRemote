@@ -3,6 +3,7 @@ var net = require('net')
 const server = net.createServer((c) => {
     c.on('connection', (stream) => {
         console.log('someone connected!');
+        c.write('CPU')
       });
     c.setEncoding('utf-8')
     console.log('client connected');
