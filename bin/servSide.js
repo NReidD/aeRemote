@@ -1,8 +1,6 @@
 var net = require('net')
 
 const server = net.createServer((c) => {
-    console.log("HEERRRESS ",c);
-    
     c.setEncoding('utf-8')
     console.log('client connected');
     x = 1
@@ -18,7 +16,6 @@ datas = data
     c.pipe(c);
     module.exports = {server,x, c}
 });
-server.listen(9000, () => { 
- console.log("TEST")
-}) 
-  
+server.listen(9000, () => {
+ console.log("test")
+})

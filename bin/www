@@ -4,19 +4,19 @@
  * Module dependencies.
  */
 
-var app = require('../app'); 
+var app = require('../app');
 var debug = require('debug')('ae:server');
 var http = require('http');
 var server = require('./servSide')
-  
+
 /**
  * Get port from environment and store in Express.
  */
     
 
-        console.log("WIN") 
+        console.log("fail") 
             var port = normalizePort(process.env.PORT || '3000');
-        app.set('port', port);
+app.set('port', port);
 
 /**
  * Create HTTP server.
@@ -62,7 +62,7 @@ function normalizePort(val) {
 
 function onError(error) {
   if (error.syscall !== 'listen') {
-    throw error; 
+    throw error;
   }
 
   var bind = typeof port === 'string'
