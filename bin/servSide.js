@@ -16,7 +16,7 @@ datas = data
     c.pipe(c);
     module.exports = {server,x, c}
 });
-server.listen(1221, () => { 
+server.listen(9000, () => { 
  console.log("TEST")
 }) 
   
