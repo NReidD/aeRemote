@@ -20,5 +20,7 @@ datas = data
     module.exports = {server,x, c}
 });
 server.listen(9000, () => {
+    console.log(server);
+    
  console.log("test")
 })
