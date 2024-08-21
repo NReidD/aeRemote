@@ -14,7 +14,7 @@ var server = require('./servSide')
  */
     
 
-            var port = normalizePort(process.env.PORT || '9000');
+            var port = normalizePort(process.env.PORT || '9143');
 app.set('port', port);
 
 /**
