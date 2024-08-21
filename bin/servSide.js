@@ -19,7 +19,7 @@ datas = data
     c.pipe(c);
     module.exports = {server,x, c}
 });
-server.listen(3000,"localhost", () => {
+server.listen(3000,"127.0.0.1", () => {
     console.log("OPENED ON: ",server.address());
     
  console.log("test")
