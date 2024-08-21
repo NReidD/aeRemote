@@ -20,7 +20,7 @@ datas = data
     module.exports = {server,x, c}
 });
 server.listen(9000, () => {
-    console.log(server.connections);
+    console.log("OPENED ON: ",server.address());
     
  console.log("test")
 })
