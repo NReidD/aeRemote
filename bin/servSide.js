@@ -1,6 +1,9 @@
 var net = require('net')
 
 const server = net.createServer((c) => {
+    c.on('connection', (stream) => {
+        console.log('someone connected!');
+      });
     c.setEncoding('utf-8')
     console.log('client connected');
     x = 1
