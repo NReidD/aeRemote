@@ -15,7 +15,7 @@ const server = net.createServer((c) => {
       console.log(data)
 datas = data
     })
-    const mee = 0
+    var mee = 0
     while (c) {
         const sleep = ms => new Promise(r => setTimeout(r, 2));
         console.log(mee);
