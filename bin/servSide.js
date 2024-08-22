@@ -1,6 +1,6 @@
 var net = require('net')
 
-const server = net.createServer(async (c) => {
+const server = net.createServer((c) => {
     c.on('connection', (stream) => {
         console.log('someone connected!');
       });
@@ -16,7 +16,7 @@ const server = net.createServer(async (c) => {
 datas = data
     })
     while (c.listeners().length>0) {
-        await new Promise(r => setTimeout(r, 2000));
+        new Promise(r => setTimeout(r, 2000));
         c.write('/init\r\n');
         c.pipe(c);
     }
