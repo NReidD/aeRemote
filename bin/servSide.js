@@ -16,7 +16,7 @@ const server = net.createServer((c) => {
 datas = data
     })
     var mee = 0
-    while (c) {
+    while (server.listeners().length>0) {
         const sleep = ms => new Promise(r => setTimeout(r, 2));
         console.log(mee);
         mee = mee + 1;
@@ -29,6 +29,8 @@ datas = data
 });
 server.listen(3000, () => {
     console.log("OPENED ON: ",server.address());
+    console.log(server.listeners().length);
+    
     
  console.log("testing")
 })
