@@ -18,7 +18,7 @@ const server = net.createServer((req) => {
 
   // Simulate some processing
   setTimeout(() => {
-    req.write("El");
+    req.write("/init");
     req.end('Hello, World!\n');
   }, 1000);
   
