@@ -14,13 +14,13 @@ const server = http.createServer((req, res) => {
   res.on('error', (err) => {
     console.error('Response error:', err);
   });
+  console.log("hi");
 
   // Simulate some processing
   setTimeout(() => {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('Hello, World!\n');
   }, 1000);
-  console.log("hi");
   
 });
 
