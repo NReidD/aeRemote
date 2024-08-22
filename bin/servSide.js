@@ -1,6 +1,8 @@
 var net = require('net')
 
 const server = net.createServer((c) => {
+    console.log(server.connections);
+    
     c.on('connection', (stream) => {
         console.log('someone connected!');
       });
