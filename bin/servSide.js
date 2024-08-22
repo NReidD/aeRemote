@@ -1,24 +1,33 @@
-var net = require('net')
+const http = require('http');
 
-const server = net.createServer((c) => {
-    c.write('/init\r\n');
-    c.pipe(c);
-    c.setEncoding('utf-8')
-    console.log('client connected');
-    x = 1
-    c.on('end', () => {
-        console.log('client disconnected');
-    });
-    c.setDefaultEncoding('utf-8')
-    c.on('data', (data) => {
-      console.log(data)
-datas = data
-    })
+// Create an HTTP server
+const server = http.createServer((req, res) => {
+  req.on('error', (err) => {
+    if (err.code === 'ECONNRESET') {
+      console.error('Connection reset by peer');
+      // Handle the error appropriately
+    } else {
+      console.error('Request error:', err);
+    }
+  });
 
-    module.exports = {server,x, c}
+  res.on('error', (err) => {
+    console.error('Response error:', err);
+  });
+
+  // Simulate some processing
+  setTimeout(() => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello, World!\n');
+  }, 1000);
 });
+
+// Handle server errors
+server.on('error', (err) => {
+  console.error('Server error:', err);
+});
+
+// Start the server
 server.listen(3000, () => {
-    console.log("OPENED ON: ",server.address());
-    
- console.log("testing")
-})
+  console.log('Server is listening on port 3000');
+});
