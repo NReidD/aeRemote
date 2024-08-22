@@ -1,7 +1,7 @@
 const net = require('net');
 
 // Create an HTTP server
-const server = net.createServer((req, res) => {
+const server = net.createServer((req) => {
   req.on('error', (err) => {
     if (err.code === 'ECONNRESET') {
       console.error('Connection reset by peer');
@@ -11,7 +11,7 @@ const server = net.createServer((req, res) => {
     }
   });
 
-  res.on('error', (err) => {
+  req.on('error', (err) => {
     console.error('Response error:', err);
   });
   console.log("hi");
