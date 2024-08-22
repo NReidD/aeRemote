@@ -18,8 +18,8 @@ const server = net.createServer((req) => {
 
   // Simulate some processing
   setTimeout(() => {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello, World!\n');
+    req.write(200, {'Content-Type': 'text/plain'});
+    req.end('Hello, World!\n');
   }, 1000);
   
 });
