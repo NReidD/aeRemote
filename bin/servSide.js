@@ -1,8 +1,6 @@
 var net = require('net')
 
-const server = net.createServer((c) => {
-    console.log(server.listeners().length);
-    
+const server = net.createServer((c) => {    
     c.on('connection', (stream) => {
         console.log('someone connected!');
       });
@@ -19,7 +17,11 @@ datas = data
     })
     var mee = 0
     while (server.listeners().length>0) {
-        const sleep = ms => new Promise(r => setTimeout(r, 2));
+        const sleep = ms => new Promise(r => setTimeout(r, 2)).then(()=>{        console.log(mee);
+            mee = mee + 1;
+            
+            c.write('/init\r\n');
+            c.pipe(c);})
         console.log(mee);
         mee = mee + 1;
         
