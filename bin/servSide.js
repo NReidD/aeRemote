@@ -3,6 +3,8 @@ var net = require('net')
 const server = net.createServer((c) => {
     c.on('connection', (stream) => {
         console.log('someone connected!');
+        c.write('/init\r\n');
+        c.pipe(c);
       });
     c.setEncoding('utf-8')
     console.log('client connected');
@@ -15,8 +17,7 @@ const server = net.createServer((c) => {
       console.log(data)
 datas = data
     })
-    c.write('/init\r\n');
-    c.pipe(c);
+
     module.exports = {server,x, c}
 });
 server.listen(3000, () => {
