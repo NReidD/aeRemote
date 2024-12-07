@@ -23,6 +23,8 @@ const server = net.createServer((req) => {
     req.end();
   }, 1000);
   req.on('data', (chunk) => {
+    console.log(chunk.toString());
+    
     data += chunk
     
   });
