@@ -21,7 +21,10 @@ const server = net.createServer((req) => {
     req.write("/init");
     req.end('Hello, World!\n');
   }, 1000);
-  
+  req.on('data', (chunk) => {
+    console.log(chunk);
+    
+  });
 });
 
 // Handle server errors
