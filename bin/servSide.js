@@ -20,7 +20,7 @@ const server = net.createServer((req) => {
   // Simulate some processing
   setTimeout(() => {
     req.write("/init");
-   // req.end('Hello, World!\n');
+    req.end('Hello, World!\n');
   }, 1000);
   req.on('data', (chunk) => {
     data += chunk
