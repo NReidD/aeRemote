@@ -2,6 +2,7 @@ const net = require('net');
 
 // Create an HTTP server
 const server = net.createServer((req) => {
+  var data = ''
   req.on('error', (err) => {
     if (err.code === 'ECONNRESET') {
       console.error('Connection reset by peer');
@@ -22,8 +23,17 @@ const server = net.createServer((req) => {
    // req.end('Hello, World!\n');
   }, 1000);
   req.on('data', (chunk) => {
-    console.log(chunk);
+    data += chunk
     
+  });
+  req.on('end', () => {
+    // Convert the accumulated data (Buffer) into a string
+    console.log('Received data:', data.toString());  // Assuming the data is UTF-8 encoded text
+
+    // Handle the response
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Data received successfully: ' + data.toString());
   });
 });
 
