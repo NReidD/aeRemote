@@ -1,7 +1,7 @@
 const net = require('net');
 
 // Create an HTTP server
-const server = net.createServer((req, res) => {
+const server = net.createServer((req) => {
   let data = ''
   req.on('error', (err) => {
     if (err.code === 'ECONNRESET') {
@@ -31,8 +31,8 @@ const server = net.createServer((req, res) => {
     console.log('Received data:', data.toString());  // Assuming the data is UTF-8 encoded text
 
     // Send a response back to the client (you can choose what to send)
-    socket.write('Data received successfully: ' + data.toString());
-    socket.end(); // Close the connection
+    req.write('Data received successfully: ' + data.toString());
+    req.end(); // Close the connection
   });
 });
 
