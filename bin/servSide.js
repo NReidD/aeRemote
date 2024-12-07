@@ -1,7 +1,7 @@
-const net = require('net');
+const http = require('http');
 
 // Create an HTTP server
-const server = net.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   let data = ''
   req.on('error', (err) => {
     if (err.code === 'ECONNRESET') {
