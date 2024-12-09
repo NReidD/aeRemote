@@ -6,10 +6,11 @@ app.use(cors());
 
 
 app.get('/api/hello', (req, res) => {
+    console.log('====================================');
+    console.log("HEEEE");
+    console.log('====================================');
   res.json({ message: 'Hello from th!' });
-  console.log('====================================');
-  console.log("HEEEE");
-  console.log('====================================');
+
 });
 
 const port = 2999;
