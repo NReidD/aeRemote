@@ -7,7 +7,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/api/hello');
+      const response = await fetch('http://localhost:2999/api/hello');
       const data = await response.json();
       setMessage(data.message);
     };
