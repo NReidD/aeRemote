@@ -5,6 +5,9 @@
    app.use(cors());
 
    app.get('/api/hello', (req, res) => {
+    console.log('====================================');
+    console.log();
+    console.log('====================================');
      res.json({ message: 'Hello from the backend!' });
    });
 
