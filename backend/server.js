@@ -1,76 +1,45 @@
+const net = require('net');
 const express = require('express');
 const cors = require('cors');
-const net = require('net');
 const app = express();
 app.use(cors());
 
+// Simple REST test endpoint
 app.get('/api/hello', (req, res) => {
-  console.log('====================================');
-  console.log();
-  console.log('====================================');
   res.json({ message: 'Hello from the backend!' });
 });
 
-const port = 2999;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+// Start REST server
+const httpPort = 2999;
+app.listen(httpPort, () => {
+  console.log(`HTTP Server listening on port ${httpPort}`);
 });
 
-// Set the port and host for the TCP server
-const PORT = 2998;
-const HOST = '127.0.0.1';  // You can change this to your server's IP if running on a network
-let connected = false;
+// TCP Server for OpenComputers
+const tcpPort = 2998;
+const tcpHost = '127.0.0.1';
 
-// Create the server
 const server = net.createServer((socket) => {
-  console.log('Client connected');
-  connected = true;
+  console.log('OpenComputers client connected');
 
-  // Handle client disconnection
+  socket.on('data', (data) => {
+    const message = data.toString().trim();
+    console.log('Received from OC:', message);
+
+    // Echo the message back
+    const response = `Echo: ${message}`;
+    socket.write(response);
+  });
+
   socket.on('end', () => {
-    console.log('Client disconnected');
+    console.log('OC client disconnected');
   });
 
-  // Handle error (optional)
   socket.on('error', (err) => {
-    console.error('Connection error: ' + err.message);
+    console.error('Socket error:', err.message);
   });
 });
 
-// Start the server and listen on the specified port
-server.listen(PORT, HOST, () => {
-  console.log(`Server listening on ${HOST}:${PORT}`);
+server.listen(tcpPort, tcpHost, () => {
+  console.log(`TCP Server listening on ${tcpHost}:${tcpPort}`);
 });
-
-// Function to send a message and return the response from the server
-function sendMessage(message) {
-  return new Promise((resolve, reject) => {
-    const client = net.createConnection({ host: HOST, port: PORT }, () => {
-      // Send the message to the server
-      console.log('Sending message: ' + message);
-      client.write(message);
-    });
-
-    // Handle incoming data (response from server)
-    client.on('data', (data) => {
-      console.log('Server response: ' + data.toString());
-      resolve(data.toString());  // Resolve the promise with the response data
-      client.end();  // Close the connection after receiving the response
-    });
-
-    // Handle error (optional)
-    client.on('error', (err) => {
-      console.error('Error: ' + err.message);
-      reject(err);  // Reject the promise in case of error
-    });
-  });
-}
-
-// Test the sendMessage function by calling it with a message
-sendMessage('Hello, server!')
-  .then(response => {
-    console.log('Response from server: ', response);
-  })
-  .catch(err => {
-    console.error('Error in communication: ', err);
-  });
