@@ -1,15 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-const net = require('net');
-const app = express();
-app.use(cors());
+   const express = require('express');
+   const cors = require('cors');
 
-app.get('/api/hello', (req, res) => {
-  console.log('====================================');
-  console.log();
-  console.log('====================================');
-  res.json({ message: 'Hello from the backend!' });
-});
+   const app = express();
+   app.use(cors());
+
+   app.get('/api/hello', (req, res) => {
+    console.log('====================================');
+    console.log();
+    console.log('====================================');
+     res.json({ message: 'Hello from the backend!' });
+   });
 
 const port = 3000;
 app.listen(port, () => {
@@ -74,3 +74,4 @@ sendMessage('Hello, server!')
   .catch(err => {
     console.error('Error in communication: ', err);
   });
+  
