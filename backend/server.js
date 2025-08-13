@@ -18,7 +18,7 @@ app.listen(port, HOST, () => {
 });
 
 // Set the port and host for the TCP server
-const PORT = 29998;
+const PORT = 2998;
 let connected = false;
 
 // Create the server
