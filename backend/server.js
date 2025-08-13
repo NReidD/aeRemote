@@ -13,7 +13,7 @@ app.get('/api/hello', (req, res) => {
 const HOST = '127.0.0.1';  // You can change this to your server's IP if running on a network
 
 const port = 2999;
-app.listen(port, HOST, () => {
+app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
@@ -43,7 +43,7 @@ const server = net.createServer((socket) => {
 });
 
 // Start the server and listen on the specified port
-server.listen(PORT, HOST, () => {
+server.listen(PORT, () => {
   console.log(`Server listening on ${HOST}:${PORT}`);
 });
 
