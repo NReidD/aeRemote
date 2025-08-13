@@ -3,22 +3,22 @@ const cors = require('cors');
 const net = require('net');
 const app = express();
 app.use(cors());
-
+ 
 app.get('/api/hello', (req, res) => {
   console.log('====================================');
   console.log();
   console.log('====================================');
   res.json({ message: 'Hello from the backend!' });
 });
+const HOST = '127.0.0.1';  // You can change this to your server's IP if running on a network
 
 const port = 2999;
-app.listen(port, () => {
+app.listen(port, HOST, () => {
   console.log(`Server listening on port ${port}`);
 });
 
 // Set the port and host for the TCP server
-const PORT = 2998;
-const HOST = '127.0.0.1';  // You can change this to your server's IP if running on a network
+const PORT = 29998;
 let connected = false;
 
 // Create the server
