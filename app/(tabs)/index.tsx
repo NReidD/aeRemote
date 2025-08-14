@@ -5,15 +5,16 @@ import { Text, View } from 'react-native';
 export default function App() {
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://108.2.142.216:2999/api/hello');
-      const data = await response.json();
-      setMessage(data.message);
-    };
+useEffect(() => {
+  const fetchData = async () => {
+    const response = await fetch('/api/hello');
+    const data = await response.json();
+    setMessage(data.message);
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
   return (
     <View>
