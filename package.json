@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "backend": "nodemon backend/server.js",
+    "proxy": "node server.js",
     "start": "expo start --port 3000",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo run:android",
@@ -33,6 +34,7 @@
     "expo-system-ui": "~4.0.5",
     "expo-web-browser": "~14.0.1",
     "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.5",
     "nodemon": "^3.1.7",
     "react": "18.3.1",
     "react-dom": "18.3.1",
