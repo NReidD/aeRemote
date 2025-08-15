@@ -26,9 +26,9 @@ const server = net.createServer((socket) => {
   console.log('Client connected');
   connected = true;
 
-  socket.on('data', () => {
-    console.log("WWW");
-    
+  socket.on('data', (data) => {
+    console.log(data.toString());
+
   })
 
   // Handle client disconnection
