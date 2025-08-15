@@ -1,81 +1,77 @@
 const express = require('express');
 const cors = require('cors');
 const net = require('net');
+
 const app = express();
 app.use(cors());
 
+// HTTP server on port 2999
+const HTTP_PORT = 2999;
+
 app.get('/api/hello', (req, res) => {
-  console.log('====================================');
-  console.log();
-  console.log('====================================');
+  console.log('Received HTTP GET /api/hello');
   res.json({ message: 'Hello from the backend!' });
 });
 
-const port = 2999;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(HTTP_PORT, () => {
+  console.log(`Express server listening on port ${HTTP_PORT}`);
 });
 
-// Set the port and host for the TCP server
-const PORT = 2998;
-const HOST = '127.0.0.1';  // You can change this to your server's IP if running on a network
-let connected = false;
+// TCP server on port 2998
+const TCP_PORT = 2998;
+const TCP_HOST = '127.0.0.1';
 
-// Create the server
-const server = net.createServer((socket) => {
-  console.log('Client connected');
-  connected = true;
+const tcpServer = net.createServer((socket) => {
+  console.log('TCP client connected:', socket.remoteAddress + ':' + socket.remotePort);
 
   socket.on('data', (data) => {
-    console.log(data.toString());
+    const msg = data.toString().trim();
+    console.log('Received TCP data:', msg);
 
-  })
+    // Send acknowledgment back to client
+    socket.write(`Server got your message: "${msg}"\n`);
+  });
 
-  // Handle client disconnection
   socket.on('end', () => {
-    console.log('Client disconnected');
+    console.log('TCP client disconnected');
   });
 
-  // Handle error (optional)
   socket.on('error', (err) => {
-    console.error('Connection error: ' + err.message);
+    console.error('TCP socket error:', err.message);
   });
 });
 
-// Start the server and listen on the specified port
-server.listen(PORT, HOST, () => {
-  console.log(`Server listening on ${HOST}:${PORT}`);
+tcpServer.listen(TCP_PORT, TCP_HOST, () => {
+  console.log(`TCP server listening on ${TCP_HOST}:${TCP_PORT}`);
 });
 
-// Function to send a message and return the response from the server
+// TCP client function to send a message and await response
 function sendMessage(message) {
   return new Promise((resolve, reject) => {
-    const client = net.createConnection({ host: HOST, port: PORT }, () => {
-      // Send the message to the server
-      console.log('Sending message: ' + message);
+    const client = net.createConnection({ host: TCP_HOST, port: TCP_PORT }, () => {
+      console.log('TCP client connected, sending message:', message);
       client.write(message);
     });
 
-    // Handle incoming data (response from server)
     client.on('data', (data) => {
-      console.log('Server response: ' + data.toString());
-      resolve(data.toString());  // Resolve the promise with the response data
-      client.end();  // Close the connection after receiving the response
+      const response = data.toString().trim();
+      console.log('TCP client received response:', response);
+      resolve(response);
+      client.end();
     });
 
-    // Handle error (optional)
     client.on('error', (err) => {
-      console.error('Error: ' + err.message);
-      reject(err);  // Reject the promise in case of error
+      console.error('TCP client error:', err.message);
+      reject(err);
     });
   });
 }
 
-// Test the sendMessage function by calling it with a message
+// Example usage: send a message to the TCP server
 sendMessage('Hello, server!')
   .then(response => {
-    console.log('Response from server: ', response);
+    console.log('Final response:', response);
   })
   .catch(err => {
-    console.error('Error in communication: ', err);
+    console.error('Error during TCP communication:', err);
   });
